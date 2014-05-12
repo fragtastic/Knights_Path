@@ -35,7 +35,6 @@ public class Main {
 		}
 
 		LinkedList<Node> toVisit = new LinkedList<Node>();
-		LinkedList<Node> temp;
 		Node c = start;
 
 		toVisit.add(start);
@@ -137,7 +136,7 @@ public class Main {
 					-2,+1,						+2,+1,
 					-2,-1,						+2,-1,
 							-1,-2,		+1,-2
-					};
+				};
 		for (int i = 0; i < d.length - 1; i+=2) {
 			if (isValidSpot(x, y, d[i], d[i+1])) {
 				board[x][y].addNeighbor(board[x+d[i]][y+d[i+1]]);

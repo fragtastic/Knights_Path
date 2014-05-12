@@ -49,7 +49,7 @@ public class Main {
 				if (weights[n.x][n.y] > weights[c.x][c.y]) {
 					weights[n.x][n.y] = weights[c.x][c.y] + 1;
 					// add changed neighbors
-					toVisit.addFirst(n);
+					toVisit.addLast(n);
 				}
 			}
 		}

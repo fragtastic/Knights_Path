@@ -9,7 +9,7 @@ javac Main.java
 java Main boardWidth boardHeight startX startY endX endY
 
 ###Example
-$ java Main 0 0 1 1
+```$ java Main 0 0 1 1
 Initializing game board
 Creating links
 Generating path weights
@@ -46,5 +46,6 @@ START -> (0,0) -> (1,2) -> (2,4) -> (0,3) -> (1,1) -> END
                       
 
                       
+```
 ##TODO
 Use grid so it's easier to see.

@@ -7,3 +7,6 @@ javac Main.java
 
 ##Running
 java Main boardWidth boardHeight startX startY endX endY
+
+###Example
+

@@ -36,27 +36,22 @@ public class Main {
 
 		LinkedList<Node> toVisit = new LinkedList<Node>();
 		LinkedList<Node> temp;
-		Node f = start;
+		Node c = start;
 
-		toVisit.addAll(start.getNeighbors());
+		toVisit.add(start);
 		weights[start.x][start.y] = 0;
 
 		// Generate weights
 		while (!toVisit.isEmpty()) {
-			Node c = toVisit.pop();
-			// Weigh current node
-			if (weights[c.x][c.y] > weights[f.x][f.y]) {
-				weights[c.x][c.y] = weights[f.x][f.y] + 1;
-			}
+			c = toVisit.pop();
 			// Weigh current neighbors
 			for (Node n : c.getNeighbors()) {
 				if (weights[n.x][n.y] > weights[c.x][c.y]) {
 					weights[n.x][n.y] = weights[c.x][c.y] + 1;
 					// add changed neighbors
-					toVisit.addLast(n);
+					toVisit.addFirst(n);
 				}
 			}
-			f = c;
 		}
 
 		// Prints board weights without extra spaces/newlines
@@ -67,23 +62,21 @@ public class Main {
 					System.out.print("  ");
 				}
 			}
-			//if (y < boardHeight - 1) {
-				System.out.print("\n\n");
-			//}
+			System.out.print("\n\n");
 		}
 
 		// find path
 		System.out.println("Finding path");
 		LinkedList<Node> path = new LinkedList<Node>();
-		f = end;
-		path.addFirst(f);
-		while (f != start) {
-			for (Node t : f.getNeighbors()) {
-				if (weights[t.x][t.y] < weights[f.x][f.y]) {
-					f = t;
+		c = end;
+		path.addFirst(c);
+		while (c != start) {
+			for (Node t : c.getNeighbors()) {
+				if (weights[t.x][t.y] < weights[c.x][c.y]) {
+					c = t;
 				}
 			}
-			path.addFirst(f);
+			path.addFirst(c);
 		}
 
 		// Print path + "map"
@@ -184,12 +177,18 @@ public class Main {
 					Integer.parseInt(args[2]), Integer.parseInt(args[3]),
 					Integer.parseInt(args[4]), Integer.parseInt(args[5])
 				);
+			} else if (args.length == 4) {
+				new Main(
+					8, 8,
+					Integer.parseInt(args[0]), Integer.parseInt(args[1]),
+					Integer.parseInt(args[2]), Integer.parseInt(args[3])
+				);
 			} else {
-
+				throw new Exception();
 			}
 		} catch (Exception e) {
 			System.out.println("Invalid arguments");
-			System.out.println("\twidth height startX startY endX endY");
+			System.out.println("\t[width = 8] [height = 8] <startX> <startY> <endX> <endY>");
 		}
 	}
 }
